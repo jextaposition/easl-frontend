@@ -2,6 +2,7 @@
 import { Container } from 'reactstrap';
 //import Carol from '../components/Carousel';
 import './Home.css';
+import Carousel from '../components/Carousel/Carousel';
 
 const HomePage = (props) => {
   return (
@@ -22,6 +23,9 @@ const HomePage = (props) => {
         <Link className='button2' to='/gallery'>
           View Listings
         </Link> */}
+        <section>
+          <Carousel />
+        </section>
       </Container>
     </div>
   );
