@@ -19,6 +19,8 @@ import './Gallery.css';
 const Gallery = () => {
   const [inventory, setInventory] = useState([]);
   const [bag, setBag] = useLocalStorage('shoppingBag', []);
+  const [error, setError] = useState(null);
+
   const addToBag = (product) => {
     let isInBag = bag.find((obj) => {
       return obj.id === product.id;
@@ -43,10 +45,29 @@ const Gallery = () => {
   };
 
   useEffect(() => {
-    API.getListings().then((res) => {
-      setInventory(res.data);
-    });
+    API.getListings()
+      .then((res) => {
+        setInventory(res.data);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
+
+  if (error) {
+    return (
+      <div className='error-text'>
+        <h2 className='text-center'>500 error loading inventory</h2>
+      </div>
+    );
+  }
+  if (!inventory) {
+    return (
+      <div className='error-text'>
+        <h2 className='text-center'>nothing to see here!</h2>
+      </div>
+    );
+  }
 
   return (
     <div className='gallery'>

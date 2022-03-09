@@ -1,3 +1,7 @@
+.error-text {
+  margin-top: 20%;
+  color: black;
+}
 .gallery-text {
   background: #cc8fc0;
   background: linear-gradient(90deg, #cc8fc0 5%, #b32dfd 79%);
